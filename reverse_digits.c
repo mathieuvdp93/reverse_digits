@@ -13,10 +13,10 @@ int main(void) {
   int32_t user_input;
   int32_t reversed_user_input;
 
-  printf("Enter a two digit number: ");
-
   user_input = validate_user_input();
   reversed_user_input = reverse_user_input_modulo(user_input);
+
+  printf("%d\n", reversed_user_input);
 
   return 0;
 }
@@ -27,12 +27,12 @@ int32_t validate_user_input() {
   char buf[2];
   int success = 0;
 
-  if (!(fgets(buf, sizeof(buf) / sizeof(buf[0]), stdin))) {
-    printf("Reading input failed\n");
-    exit(1);
-  }
-
   do {
+    printf("Enter a two digit number: ");
+    if (!(fgets(buf, sizeof(buf) / sizeof(buf[0]), stdin))) {
+      printf("Reading input failed\n");
+      exit(1);
+    }
     if (strchr(buf, '\n') == NULL) {
       printf("input not fully converted\n");
       empty_input_stream();
@@ -66,7 +66,7 @@ int32_t validate_user_input() {
 void empty_input_stream() {
 
   int c;
-  while ((c = getchar()) && c != EOF) {
+  while ((c = getchar()) != '\n' && c != EOF) {
     ;
   }
 }
