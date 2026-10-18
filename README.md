@@ -17,8 +17,8 @@ What I wanted to learn:
 
 ## 🐛 Mistakes & Fixes
 
-- **Problem:**  
-  **Fix:** 
+- **Problem:** first i used buf[2] but that would not read the input correctly because fgets reads count-1 and adds '\0' so buf would at most contain 1 char + '\0', buf[3] would contain 2 chars + '\0' but would not contain the '\n' needed for the strchr check to see if input was fully converted.
+  **Fix:** buf[number_of_digits_to_reverse + 2] 
 
 ## ❓ Open Questions
 
