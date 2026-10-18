@@ -24,15 +24,23 @@ int main(void) {
 int32_t validate_user_input() {
 
   long result;
-  char buf[2];
+  char buf[4];
   int success = 0;
 
   do {
     printf("Enter a two digit number: ");
-    if (!(fgets(buf, sizeof(buf) / sizeof(buf[0]), stdin))) {
+    if (!(fgets(buf, sizeof buf, stdin))) {
       printf("Reading input failed\n");
       exit(1);
     }
+    /*
+int c;
+if ((c = fgetc(stdin)) != EOF && c != '\n') {
+printf("input not fully converted\n");
+empty_input_stream();
+continue;
+}
+    */
     if (strchr(buf, '\n') == NULL) {
       printf("input not fully converted\n");
       empty_input_stream();
